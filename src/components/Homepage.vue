@@ -42,11 +42,11 @@ export default {
   },
   data() {
     return {
-      stores: this.getInitStoreData(),
+      stores: [],
     }
   },
   mounted() {
-    // this.getInitStoreData();
+    this.stores = this.getInitStoreData();
   },
   methods: {
     getInitStoreData() {
