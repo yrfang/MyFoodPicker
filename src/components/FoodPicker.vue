@@ -58,12 +58,8 @@ Firebase.auth().onAuthStateChanged((user) => {
 let storesRef = db.ref('stores');
 
 export default {
-  firebase: {
-    stores: storesRef,
-  },
-
-
-
+  name: 'foodPicker',
+  props: ['stores'],
   data() {
       var _budgets = [
         { text: "0 ~ 100", low: 0, high: 100},
@@ -71,44 +67,29 @@ export default {
         { text: "150 ~ 200", low: 150, high: 200},
         { text: "200 up", low: 200, high: 1000},
       ];
-      
     return {
       budgets: _budgets,
       categories: [
         { text: "正餐", value: 'meal'},
         { text: "飲料", value: 'drink'},
       ],
-      stores: this.getInitStoreData(),
       randomShow: false,
       timerId: '',
       selectBudgeItem: _budgets[0]
     }
   },
-
   computed: {
     // a computed getter
     filteredStores: function() {
       return this.stores.filter(this.filterStore);
     }
   },
-  mounted() {
-    console.log(this.selectBudgeItem);
-    //computed
-    // this.clickStart();
-  },
-  //computed: {
-    //randomResult() {
-      //const random = this.lists[Math.floor(Math.random() * this.lists.length)];
-     //return this.lists;
-    //},
-  //},
   methods: {
     filterStore(store) {
         return store.price >= this.selectBudgeItem.low &&
           store.price <= this.selectBudgeItem.high;
     },
     clickStart() {
-
       console.log(this.filteredStores);
       const foodList = document.querySelector('.foodResult ul li');
       const randomFood = this.filteredStores[Math.floor(Math.random() *
