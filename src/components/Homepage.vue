@@ -1,7 +1,7 @@
 <template lang="pug">
   .Homepage
     AppNavBar
-    FoodPicker(:stores="stores")
+    FoodPicker(:stores="stores", :isReady="isReady")
 </template>
 
 <script>
@@ -43,20 +43,24 @@ export default {
   data() {
     return {
       stores: [],
+      isReady: false
     }
   },
   mounted() {
     this.stores = this.getInitStoreData();
+    
   },
   methods: {
     getInitStoreData() {
 
       let items = [];
+      let self = this;
       storesRef.once('value', function(snap) {
         snap.forEach(function(storeSnap) {
-
           items.push(storeSnap.val());
+          
         });
+      self.isReady = true;
       });
       return items;
     },
