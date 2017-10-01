@@ -108,6 +108,7 @@ export default {
           store.price <= this.selectBudgeItem.high;
     },
     clickStart() {
+
       console.log(this.filteredStores);
       const foodList = document.querySelector('.foodResult ul li');
       const randomFood = this.filteredStores[Math.floor(Math.random() *
