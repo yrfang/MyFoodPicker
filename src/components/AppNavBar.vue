@@ -16,24 +16,26 @@
           a(href='/feedback') Feedback
         li
           a(href='/store') What's New
-        li.dropdown
-          a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-            | Login
-            span.caret
-          ul.dropdown-menu(role='menu')
-            li
-              a(href='#') Action
-            li
-              a(href='#') Another
-            li
-              a(href='#') Something
-            li.divider
-            li
-              a(href='#') Separated link
+        li.button(v-if="!isAuth", @click.prevent="signIn")
+          a(href='/') SignIn
+        li.button(v-if="isAuth", @click.prevent="signOut")
+          a(href='/') SignOut
+
 </template>
 
 <script>
+import Firebase from 'firebase';
 export default {
+  props: ['auth', 'isAuth'],
+  methods: {
+    signIn() {
+      var provider = new Firebase.auth.GoogleAuthProvider();
+      this.auth.signInWithPopup(provider);
+    },
+    signOut() {
+      this.auth.signOut();
+    },
+  }
 }
 </script>
 
