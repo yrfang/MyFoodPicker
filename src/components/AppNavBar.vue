@@ -44,7 +44,11 @@ export default {
     },
     signOut() {
       this.auth.signOut();
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> upstream/master
     },
   }
 }
@@ -85,6 +89,7 @@ nav
       cursor: pointer
 
       #user-pic
+<<<<<<< HEAD
         top: 5px;
         position: relative;
         display: inline-block;
@@ -103,6 +108,32 @@ nav
         line-height: 36px;
         padding-right: 10px;
         padding-left: 20px;
+=======
+        top: 5px
+        position: relative
+        display: inline-block
+        background-image: url('/assets/images/profile_placeholder.png')
+        background-repeat: no-repeat
+        width: 40px
+        height: 40px
+        background-size: 40px
+        border-radius: 20px
+        cursor: initial
+        @media only screen and (max-width: 480px)
+          left: 15px
+
+      #user-name
+        top: 5px
+        left: -40px
+        position: relative
+        font-size: 12px
+        line-height: 36px
+        padding-right: 10px
+        padding-left: 20px
+        cursor: initial
+        @media only screen and (max-width: 480px)
+          left: -10px
+>>>>>>> upstream/master
 
 
 

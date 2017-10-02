@@ -1,9 +1,14 @@
 <template lang="pug">
   .Homepage
     AppNavBar(
+<<<<<<< HEAD
       :auth="auth",:isAuth="isAuth",:userData="userData"
       )
     FoodPicker(:stores="stores", :isReady="isReady", :dbRef="dbRef")
+=======
+      :auth="auth",:isAuth="isAuth",:userData="userData")
+    FoodPicker(:stores="stores", :isReady="isReady", :userData="userData")
+>>>>>>> upstream/master
     FeedbackPage(:stores="stores", v-if="this.$route.path == '/feedback'")
 </template>
 
