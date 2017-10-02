@@ -26,12 +26,21 @@
       .slotButton
         button.start(@click="clickStart", v-if="randomShow===false && isReady") STAR
         button.stop(@click="clickStop", v-if="randomShow", ref="stopBtn") STOP
+    .row
+      ShowFeedback(v-if="selected",
+                   :feedbackStores="stores", :randomResult="randomResult")
 </template>
 
 <script>
+import ShowFeedback from './ShowFeedback';
+
 export default {
   name: 'foodPicker',
-  props: ['stores', 'isReady'],
+  components: { ShowFeedback },
+  props: ['stores', 'isReady', 'dbRef'],
+  mounted() {
+    //console.log(this.recordsRef);
+  },
   data() {
       var _budgets = [
         { text: "0 ~ 100", low: 0, high: 100},
@@ -51,11 +60,13 @@ export default {
       randomShow: false,
       timerId: '',
       selectBudgeItem: _budgets[0],
-      selectCatItem: _categories[0]
+      selectCatItem: _categories[0],
+      selected: false,
+      randomResult: ""
     }
   },
   computed: {
-    filteredStores: function() {
+    filteredStores() {
       return this.stores.filter(this.filterStore);
     }
   },
@@ -68,6 +79,7 @@ export default {
     clickStart() {
       const foodList = document.querySelector('.foodResult ul li');
       this.randomShow = true;
+      this.selected = false;
       this.timerId = setInterval(this.interValFunc, 100);
     },
     interValFunc() {
@@ -81,17 +93,19 @@ export default {
         foodList.innerHTML = '沒這個選項';
         clearInterval(this.timerId);
         this.$refs.stopBtn.click();
+        this.selected = false;
         return;
       }
 
       if(!this.randomShow) {
         clearInterval(this.timerId);
+        this.randomResult = document.querySelector('.foodResult ul li').firstChild.nodeValue;
       }
       foodList.innerHTML = text;
     },
     clickStop() {
-      const foodList = document.querySelector('.foodResult ul li');
       this.randomShow = false;
+      this.selected = true;
     }
   }
 }
@@ -100,8 +114,8 @@ export default {
 <style lang="sass" scoped>
 .FoodPicker
   position: relative
-  height: 150vh
   margin-top: 60px
+  margin-bottom: 60px
   overflow-x: hidden
   z-index: 0
   text-align: center
@@ -176,7 +190,6 @@ export default {
     padding: 10px 40px
     border: solid 2px #333
     border-radius: 50px
-    // box-shadow: 5px 5px 0px yellow, 3px 3px 10px blue
 
     &:focus
       outline: none
