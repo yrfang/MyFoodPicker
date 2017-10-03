@@ -1,11 +1,5 @@
 <template lang="pug">
 .FeedbackPage
-<<<<<<< HEAD
-  input.search.form-control(placeholder="search the store")
-  .suggestions
-  Feedback(:stores="stores")
-  ShowFeedback(:stores="stores")
-=======
   input.search.form-control(placeholder="Search the store", v-model="searchString")
   #searchResult
     ul
@@ -14,7 +8,6 @@
         a(@click="dispalySelectedStore") {{store.name}}
   Feedback(:stores="stores", :selectedStore="selectedStore", :filterShow="filterShow", v-if="filterShow")
   ShowFeedback(:stores="stores", v-if="filterShow")
->>>>>>> upstream/master
 </template>
 
 <script>
