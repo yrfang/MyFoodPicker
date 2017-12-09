@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Homepage from '@/components/Homepage'
 import FeedbackPage from '@/components/FeedbackPage'
+import AboutPage from '@/components/AboutPage'
 
 Vue.use(Router)
 
@@ -18,6 +19,11 @@ export default new Router({
       path: '/feedback',
       name: 'feedback',
       component: FeedbackPage
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutPage
     }
   ]
 })
