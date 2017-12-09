@@ -1,6 +1,6 @@
 <template lang="pug">
 .About
-  h1 Hi
+  h1 Hi, I'm Henry!
 </template>
 
 <script>
