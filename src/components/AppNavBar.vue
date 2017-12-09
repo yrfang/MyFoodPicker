@@ -11,7 +11,7 @@
     #navbar1.navbar-collapse.collapse
       ul.nav.navbar-nav
         li
-          a(href='/about') About
+          a(href='/about') About a commit test of branch
         li
           a(v-if="isAuth", @click="routeToFeedback") Feedback
         li.button(v-if="!isAuth", @click.prevent="signIn")
